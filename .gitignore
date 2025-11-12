@@ -1,0 +1,84 @@
+# --- Dependency directories ---
+node_modules/
+
+# --- Python bytecode / artifacts ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# --- Build & packaging ---
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+ENV/
+.conda/
+
+# --- Jupyter notebooks ---
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# --- Data / model artifacts (adjust as needed) ---
+data/
+datasets/
+raw_data/
+checkpoint*/
+checkpoints/
+runs/
+logs/
+wandb/
+mlruns/
+tensorboard/
+*.tfevents*
+models/
+*.ckpt
+*.h5
+*.pt
+*.pth
+*.onnx
+*.pb
+*.joblib
+*.pkl
+
+# --- Caches ---
+.cache/
+.mypy_cache/
+.pytest_cache/
+pytest_cache/
+.pyre/
+.pytype/
+.dmypy.json
+
+# --- Coverage ---
+.coverage*
+htmlcov/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.iml
+
+# --- Logs ---
+*.log
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+
+# --- Misc ---
+# Uncomment if you generate large temporary exports
+# exports/
