@@ -74,6 +74,8 @@ htmlcov/
 
 # --- Logs ---
 *.log
+.logfire
+sample_logs
 
 # --- OS files ---
 .DS_Store

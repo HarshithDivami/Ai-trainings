@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Commerce Assistant</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🛍️ AI Commerce</div>
+    <nav class="nav-actions">
+      <button id="open-orders" class="ghost">Orders</button>
+      <button id="open-cart" class="primary">Cart <span id="cart-count" class="pill">0</span></button>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <h1>Smart Shopping Assistant</h1>
+      <p class="muted">Chat with the AI to manage your cart, apply discounts, restock inventory or checkout. Click a product to quick-add.</p>
+      <form id="chat-form" class="chat-inline">
+        <input id="chat-input" placeholder="e.g. add 2 mouse and apply SPRING10" autocomplete="off" />
+        <button type="submit" class="primary">Send</button>
+      </form>
+    </section>
+
+    <section id="products" class="grid"></section>
+
+    <section id="assistant-panel" class="panel">
+      <h2>Conversation</h2>
+      <div id="transcript" class="transcript"></div>
+    </section>
+  </main>
+
+  <!-- Cart Drawer -->
+  <div id="cart-drawer" class="drawer hidden">
+    <div class="drawer-head">
+      <h2>Cart</h2>
+      <button class="icon-btn" id="close-cart">✕</button>
+    </div>
+    <div id="cart-lines" class="cart-lines"></div>
+    <div class="cart-discounts">
+      <h3>Discounts</h3>
+      <div id="discounts" class="discounts"></div>
+      <button id="remove-discount" class="ghost small">Remove discount</button>
+    </div>
+    <div class="total-row">Total: <span id="total">$0.00</span></div>
+    <div class="cart-actions">
+      <button id="checkout" class="primary full">Checkout</button>
+      <button id="clear-cart" class="ghost full">Clear Cart</button>
+    </div>
+  </div>
+
+  <!-- Orders Modal -->
+  <div id="orders-modal" class="modal hidden">
+    <div class="modal-content wide">
+      <div class="modal-head">
+        <h2>Order History</h2>
+        <button class="icon-btn" id="close-orders">✕</button>
+      </div>
+      <div id="orders-list" class="orders-list"></div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toasts" class="toasts"></div>
+
+  <!-- Product Quick Modal -->
+  <div id="product-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h2 id="pm-name"></h2>
+        <button class="icon-btn" id="close-product">×</button>
+      </div>
+      <img id="pm-img" alt="" class="pm-img" />
+      <div id="pm-thumbs" class="thumb-strip"></div>
+      <p id="pm-price"></p>
+      <p id="pm-stock" class="muted"></p>
+      <div class="qty-row">
+        <input id="pm-qty" type="number" min="1" value="1" />
+        <button id="pm-add" class="primary">Add to Cart</button>
+      </div>
+      <div id="pm-restock" class="restock-row hidden">
+        <button id="pm-restock-btn" class="ghost small">Restock +5</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Detail Modal -->
+  <div id="order-detail-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h2 id="od-id">Order</h2>
+        <button class="icon-btn" id="close-order-detail">×</button>
+      </div>
+      <div id="od-lines" class="od-lines"></div>
+      <div id="od-total" class="od-total"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

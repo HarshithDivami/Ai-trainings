@@ -47,6 +47,97 @@ python chatbot.py
 ```
 4. Type messages; use `exit`, `quit`, or `bye` to end.
 
+## E-commerce UI Agent (State-Aware)
+A Streamlit app (`ui_ecommerce_agent.py`) showcases multi-turn UI state manipulation.
+
+### Start UI
+```bash
+streamlit run ui_ecommerce_agent.py
+```
+
+### Fast HTML UI (FastAPI)
+For a faster, lightweight HTML interface use `fast_ecommerce_agent.py`:
+```bash
+uvicorn fast_ecommerce_agent:app --reload --port 8000
+```
+Open http://localhost:8000 in your browser.
+
+Legacy Features (original UI):
+- Responsive HTML/JS front-end (inventory, cart, discounts, chat)
+- Real-time cart updates via REST endpoints
+- Agent + natural language fallback parsing
+- Manual controls for add/remove/apply/clear actions
+
+Modern Refresh (2025):
+- Product cards with images & hover elevation
+- Slide-in cart drawer with quantity controls
+- Order history modal & checkout workflow
+- Product quick-view modal for manual quantity add
+- Toast notifications (success/error/info) for all mutations
+- Dark glass topbar + responsive grid layout
+- Expanded actions: adds checkout & persistent orders
+
+Updated Endpoints:
+- GET `/state` current state snapshot
+- POST `/chat` {"message": "add 2 mouse"}
+- POST `/manual` {"actions": [{"type":"add_to_cart","sku":"SKU1","qty":2}]}
+- POST `/clear_cart`
+- POST `/remove_discount`
+- POST `/checkout` finalize current cart into order
+- GET `/orders` list prior orders
+
+To customize styling edit `static/style.css`.
+
+
+### Capabilities
+- Dual interaction: manual UI controls + AI assistant actions
+- Inventory panel with per-product quantity selector & Add buttons
+- Cart panel with + / - / Remove controls & Clear Cart
+- Discount panel with Apply code buttons & Remove discount
+- Agent can emit fenced JSON action blocks to mutate state
+- Supported actions: `add_to_cart`, `remove_from_cart`, `apply_discount`, `restock`, `checkout`
+- Right panel continuously introspects current state
+- Theming: dark gradient background, visually distinct user vs agent message blocks
+
+### Sample 3+ Turn Conversation
+Turn 1 (You): List products and add 2 Wireless Mouse to my cart.
+Turn 1 (Agent): Adds SKU1 (2 units) via action block; cart shows 2, inventory stock drops.
+Turn 2 (You): Apply SPRING10 discount and restock the mouse by 3.
+Turn 2 (Agent): Discount applied, inventory SKU1 +3, total reflects 10% off.
+Turn 3 (You): Remove 1 mouse from cart and summarize current total.
+Turn 3 (Agent): Cart qty decreases to 1, subtotal updates, total recalculated.
+Turn 4 (Optional You): Add 1 USB-C Hub and show final summary.
+Turn 4 (Agent): Adds SKU3; final total with discount displayed.
+
+### Action Block Format
+Agent may append fenced block:
+```
+```action
+{"actions": [{"type": "add_to_cart", "sku": "SKU1", "qty": 2}]}
+```
+```
+Multiple actions allowed in one block. Invalid actions surface warnings.
+
+### Manual Control Examples
+1. Use inventory Add button to insert items without the agent.
+2. Adjust quantities directly in Cart panel (+ / -) to see stock update in Inventory.
+3. Apply discount via button; remove discount with Remove Discount.
+4. Clear Cart returns all stock to inventory.
+
+### Styling
+Custom CSS (see `static/style.css`) now includes dark theme, product grid, modals, drawer, toast notifications, and responsive behaviors.
+
+Quick customization:
+- Change accent color: edit `--accent` & `--accent-grad` in `:root`.
+- Adjust toast lifetime: change `setTimeout` duration in `pushToast` (in `static/app.js`).
+- Add new SKU image: extend `INITIAL_INVENTORY` in `fast_ecommerce_agent.py` with `image` URL.
+
+### Demo Goals Alignment
+- Build e-commerce assistant: Implemented product inventory & cart logic.
+- Demonstrate UI state manipulation: Actions mutate Streamlit session state.
+- Show state introspection: Side panel with inventory, cart, discounts, total.
+- 3+ turns conversation included above.
+
 ## Files
 - `chatbot.py`: Minimal basic chatbot.
 - `chatbot_basic.py`: Also minimal; similar to `chatbot.py` (keep one if desired).
