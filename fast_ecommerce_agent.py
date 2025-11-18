@@ -62,7 +62,7 @@ INITIAL_INVENTORY: Dict[str, Product] = {
     ),
     "SKU3": Product(
         "SKU3","USB-C Hub",42.00,8,
-        "https://images.unsplash.com/photo-1587202372775-98908bccad4d?auto=format&fit=crop&w=500&q=60",
+        "https://m.media-amazon.com/images/I/61CJDQiqgqL._SL1500_.jpg",
         [
             "https://images.unsplash.com/photo-1587202372775-98908bccad4d?auto=format&fit=crop&w=500&q=60",
             "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=500&q=60",
@@ -309,4 +309,4 @@ async def checkout():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("fast_ecommerce_agent:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("fast_ecommerce_agent:app", host="127.0.0.1", port=8001, reload=True)
